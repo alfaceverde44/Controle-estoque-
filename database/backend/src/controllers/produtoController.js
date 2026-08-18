@@ -24,3 +24,21 @@ async function criar(req, res, next) {
     next(e);
   }
 }
+async function atualizar(req, res, next) {
+  try {
+    res.json(await service.atualizar(req.params.id, req.body));
+  } catch (e) {
+    next(e);
+  }
+}
+
+async function excluir(req, res, next) {
+  try {
+    await service.excluir(req.params.id);
+    res.status(204).send();
+  } catch (e) {
+    next(e);
+  }
+}
+
+module.exports = { listar, buscar, criar, atualizar, excluir };
